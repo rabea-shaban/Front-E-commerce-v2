@@ -20,7 +20,7 @@ const ProductDetail = () => {
   const [product, setProduct] = useState<IProduct | null>(null);
   const [related, setRelated] = useState<IProduct[]>([]);
 
-  // const [selectedImage, setSelectedImage] = useState("");
+  const [selectedImage, setSelectedImage] = useState("");
   const [selectedColor, setSelectedColor] = useState("red");
   const [selectedSize, setSelectedSize] = useState("M");
   const [fav, setFav] = useState(false);
@@ -119,10 +119,10 @@ const ProductDetail = () => {
           </div>
 
           <div className="flex-1 bg-gray-100 rounded p-6 flex items-center justify-center">
-            <img
-              src={`${IMG_URL}${product.image}`}
-              className="max-h-96 object-contain"
-            />
+        <img
+  src={`${IMG_URL}${selectedImage || product.image}`}
+  className="max-h-96 object-contain"
+/>
           </div>
         </div>
 
