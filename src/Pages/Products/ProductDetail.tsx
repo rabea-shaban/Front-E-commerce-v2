@@ -20,7 +20,7 @@ const ProductDetail = () => {
   const [product, setProduct] = useState<IProduct | null>(null);
   const [related, setRelated] = useState<IProduct[]>([]);
 
-  const [selectedImage, setSelectedImage] = useState("");
+  // const [selectedImage, setSelectedImage] = useState("");
   const [selectedColor, setSelectedColor] = useState("red");
   const [selectedSize, setSelectedSize] = useState("M");
   const [fav, setFav] = useState(false);
