@@ -2,9 +2,11 @@ import { createBrowserRouter } from "react-router-dom";
 import About from "../Pages/About/About";
 import Login from "../Pages/Auth/Login";
 import SignUp from "../Pages/Auth/SignUp";
+import LoginSuccess from "../Pages/Auth/LoginSuccess";
 import Contact from "../Pages/Contact/Contact";
 import Home from "../Pages/Home/Home";
 import Account from "../Pages/Users/Account";
+import Orders from "../Pages/Users/Orders";
 import Wishlist from "../Pages/wishlist/Wishlist";
 import Root from "../components/layout/Root";
 import Products from "../Pages/Products";
@@ -33,6 +35,7 @@ const router = createBrowserRouter([
     children: [
       { path: "login", Component: Login },
       { path: "register", Component: SignUp },
+      { path: "login-success", Component: LoginSuccess },
     ],
   },
 
@@ -45,7 +48,7 @@ const router = createBrowserRouter([
         element: <ProtectedRoute />,
         children: [
           { index: true, Component: Account },
-          { path: "orders", Component: () => <div>Orders</div> },
+          { path: "orders", Component: Orders },
           { path: "cancellations", Component: () => <div>Cancellations</div> },
           { path: "reviews", Component: () => <div>Reviews</div> },
           { path: "Wishlist", Component: Wishlist },

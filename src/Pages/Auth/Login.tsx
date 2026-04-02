@@ -1,8 +1,8 @@
 import { AxiosError } from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import axiosInstance from "../../utils/axios";
 import { setToken, setUser } from "../../utils/auth";
 
@@ -26,6 +26,13 @@ type ErrorResponse = {
 const Login = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+
+  useEffect(() => {
+    if (searchParams.get("error") === "google_failed") {
+      toast.error("Google login failed, please try again");
+    }
+  }, []);
 
   const {
     register,
@@ -136,6 +143,17 @@ const Login = () => {
               </button>
             </div>
           </form>
+
+          {/* Google Login */}
+          <div className="mt-5">
+            <a
+              href="http://localhost:5000/auth/google"
+              className="flex items-center justify-center gap-3 w-full border py-3 rounded-md hover:bg-gray-50 transition"
+            >
+              <img src="/google.png" alt="Google" className="w-5 h-5" />
+              <span>Sign in with Google</span>
+            </a>
+          </div>
         </div>
       </div>
     </div>

@@ -26,27 +26,26 @@ export default function Account() {
 
   const { register, handleSubmit, reset } = useForm<ProfileForm>();
 
+  const [userName, setUserName] = useState("");
+
   // ================= GET PROFILE =================
   useEffect(() => {
     const getProfile = async () => {
       try {
         const res = await axiosInstance.get("/auth/profile");
-
-        const { name, email, address } = res.data;
-
+        const { name, email, address } = res.data.user;
         const names = name.split(" ");
-
+        setUserName(name);
         reset({
           firstName: names[0] || "",
           lastName: names[1] || "",
           email,
-          address,
+          address: address || "",
         });
       } catch {
         toast.error("Failed to load profile");
       }
     };
-
     getProfile();
   }, [reset]);
 
@@ -91,7 +90,7 @@ export default function Account() {
           </p>
 
           <p>
-            Welcome! <span className="text-red-500 font-medium">User</span>
+            Welcome! <span className="text-red-500 font-medium">{userName}</span>
           </p>
         </div>
 
